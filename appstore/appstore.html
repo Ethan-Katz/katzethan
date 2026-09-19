@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/appstore/appstore.css?v=1.0" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>My Apps</title>
+
+    <link rel="stylesheet" href="/style.css?v=2.0" />
+    <link rel="stylesheet" href="/appstore/appstore.css?v=2.0" />
+
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -18,40 +22,30 @@
       type="image/png"
       sizes="16x16"
       href="https://ik.imagekit.io/ethankatz/IMG_0045_srifbNHCv.jpg" />
-    <title>My Apps</title>
-    <meta name="title" content="Ethan Katz" />
+
+    <meta name="theme-color" content="#020617" />
+    <meta name="title" content="My Apps — Ethan Katz" />
     <meta
       name="description"
-      content="Hi, I'm Ethan Katz, a tech enthusiast with multiple years of
-          experience in hi-tech. Currently, I'm pursuing my studies at Reichman
-          University in Israel, learning Interactive Communications in UI/UX Product Design. I'm currently living in Israel but I grew up in Detroit,
-          Michigan. Besides for my education and professional endeavors, I love
-          staying up to date with the latest technology by reading blogs and
-          watching videos to broaden my horizons and embrace the ever-evolving
-          landscape of technology. In my free time, I enjoy coding
-          and I have created a couple of apps currently on the App Store." />
+      content="The apps Ethan Katz has built and published on the App Store." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://katzethan.com/" />
-    <meta property="og:title" content="Ethan Katz" />
+    <meta
+      property="og:url"
+      content="https://katzethan.com/appstore/appstore.html" />
+    <meta property="og:title" content="My Apps — Ethan Katz" />
     <meta
       property="og:description"
-      content="Hi, I'm Ethan Katz, a tech enthusiast with multiple years of
-          experience in hi-tech. Currently, I'm pursuing my studies at Reichman
-          University in Israel, learning Interactive Communications in UI/UX Product Design. I'm currently living in Israel but I grew up in Detroit,
-          Michigan. Besides for my education and professional endeavors, I love
-          staying up to date with the latest technology by reading blogs and
-          watching videos to broaden my horizons and embrace the ever-evolving
-          landscape of technology. In my free time, I enjoy coding
-          and I have created a couple of apps currently on the App Store." />
+      content="The apps Ethan Katz has built and published on the App Store." />
     <meta
       property="og:image"
       content="https://ik.imagekit.io/ethankatz/IMG_0045_srifbNHCv.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap&family=Permanent+Marker&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&family=Permanent+Marker&display=swap"
       rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -68,52 +62,67 @@
   </head>
 
   <body>
-    <section class="bubble-container">
-      <div class="app">
+    <header class="apps-header">
+      <a
+        class="back-link"
+        href="/index.html"
+        aria-label="Back to the home page">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true">
+          <path d="M15 5l-7 7 7 7" />
+        </svg>
+      </a>
+      <h1 class="apps-title">My Apps</h1>
+    </header>
+
+    <ul class="app-grid">
+      <li class="app-card">
         <img
-          src="https://ik.imagekit.io/ethankatz/tr:w-500,h-500/icon_LVImayAMv.png?updatedAt=1712132069089"
-          alt=""
-          class="bubble" />
-        <p class="header">Button Bash!</p>
-        <div class="row">
-          <div class="column">
-            <a
-              href="https://apps.apple.com/us/app/id1547141578"
-              target="_blank">
-              <img
-                class="image"
-                src="https://ik.imagekit.io/ethankatz/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917_hOVHD3V6W.svg?updatedAt=1712213448857" />
-            </a>
-          </div>
-        </div>
-        <p class="bio">
-          Button Bash! is a fast-paced arcade game that
-          challenges your reflexes and speed. In this
-          game, players are tasked with tapping buttons on the
-          screen, earning points for speed and accuracy. Button Bash offers endless hours of
-          fun, whether you're looking to kill some time or aiming to top the
-          leaderboards, Button Bash is the perfect game for you. Test your
-          reflexes, improve your speed.
+          class="app-card__icon"
+          src="https://ik.imagekit.io/ethankatz/tr:w-360,h-360/icon_LVImayAMv.png?updatedAt=1712132069089"
+          width="360"
+          height="360"
+          alt="Button Bash! app icon" />
+        <h2 class="app-card__name">Button Bash!</h2>
+        <p class="app-card__bio">
+          Button Bash! is a fast-paced arcade game that challenges your reflexes
+          and speed. In this game, players are tasked with tapping buttons on
+          the screen, earning points for speed and accuracy. Button Bash offers
+          endless hours of fun, whether you're looking to kill some time or
+          aiming to top the leaderboards, Button Bash is the perfect game for
+          you. Test your reflexes, improve your speed.
         </p>
-      </div>
-      <div class="app">
-        <img
-          src="https://ik.imagekit.io/ethankatz/tr:w-500,h-500/logo_rrawJG4Tx.png?updatedAt=1712138458243"
-          alt=""
-          class="bubble" />
-        <p class="header">Holy Stride</p>
-        <div class="row">
-          <div class="column">
-            <a
-              href="https://apps.apple.com/us/app/id6475584091"
-              target="_blank">
-              <img
-                class="image"
-                src="https://ik.imagekit.io/ethankatz/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917_hOVHD3V6W.svg?updatedAt=1712213448857" />
-            </a>
-          </div>
+        <div class="app-card__store">
+          <a
+            href="https://apps.apple.com/us/app/id1547141578"
+            target="_blank"
+            rel="noopener">
+            <img
+              class="app-card__badge"
+              src="https://ik.imagekit.io/ethankatz/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917_hOVHD3V6W.svg?updatedAt=1712213448857"
+              width="240"
+              height="80"
+              loading="lazy"
+              alt="Download Button Bash! on the App Store" />
+          </a>
         </div>
-        <p class="bio">
+      </li>
+
+      <li class="app-card">
+        <img
+          class="app-card__icon"
+          src="https://ik.imagekit.io/ethankatz/tr:w-360,h-360/logo_rrawJG4Tx.png?updatedAt=1712138458243"
+          width="360"
+          height="360"
+          alt="Holy Stride app icon" />
+        <h2 class="app-card__name">Holy Stride</h2>
+        <p class="app-card__bio">
           Discover a unique way to intertwine fitness and faith as you traverse
           the beautiful landscapes of Israel. The app translates your steps into
           mitzvot according to halacha, honoring the tradition where every 4
@@ -121,13 +130,52 @@
           the spiritual essence of each stride, and embark on a journey that
           harmonizes physical activity with religious significance.
         </p>
-      </div>
-    </section>
-    <!-- <section class="BashArrow">
-        <div class="Bash-arrow"></div>
-    </section> -->
-    <a href="/index.html" class="floating-button">
-      <i class="fa fa-close"></i>
-    </a>
+        <div class="app-card__store">
+          <a
+            href="https://apps.apple.com/us/app/id6475584091"
+            target="_blank"
+            rel="noopener">
+            <img
+              class="app-card__badge"
+              src="https://ik.imagekit.io/ethankatz/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917_hOVHD3V6W.svg?updatedAt=1712213448857"
+              width="240"
+              height="80"
+              loading="lazy"
+              alt="Download Holy Stride on the App Store" />
+          </a>
+        </div>
+      </li>
+
+      <!-- CouchPotatoLog. Three blanks to fill, then delete this comment and
+           uncomment the card below:
+             1. ICON_URL  — upload the icon to ImageKit and paste its URL
+             2. STORE_URL — the apps.apple.com link
+             3. the description text
+           If it is not on the App Store yet, swap the badge <a>/<img> for:
+             <a class="app-card__link" href="SITE_URL" target="_blank"
+                rel="noopener">Visit the site</a>
+      <li class="app-card">
+        <img
+          class="app-card__icon"
+          src="ICON_URL"
+          width="360"
+          height="360"
+          alt="CouchPotatoLog app icon" />
+        <h2 class="app-card__name">CouchPotatoLog</h2>
+        <p class="app-card__bio">DESCRIPTION</p>
+        <div class="app-card__store">
+          <a href="STORE_URL" target="_blank" rel="noopener">
+            <img
+              class="app-card__badge"
+              src="https://ik.imagekit.io/ethankatz/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917_hOVHD3V6W.svg?updatedAt=1712213448857"
+              width="240"
+              height="80"
+              loading="lazy"
+              alt="Download CouchPotatoLog on the App Store" />
+          </a>
+        </div>
+      </li>
+      -->
+    </ul>
   </body>
 </html>

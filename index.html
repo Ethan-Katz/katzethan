@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/style.css?v=1.0" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ethan Katz</title>
+
+    <link rel="stylesheet" href="/style.css?v=2.0" />
+
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -18,7 +21,8 @@
       type="image/png"
       sizes="16x16"
       href="https://ik.imagekit.io/ethankatz/IMG_0045_srifbNHCv.jpg" />
-    <title>Ethan Katz</title>
+
+    <meta name="theme-color" content="#020617" />
     <meta name="title" content="Ethan Katz" />
     <meta
       name="description"
@@ -46,15 +50,14 @@
     <meta
       property="og:image"
       content="https://ik.imagekit.io/ethankatz/IMG_0045_srifbNHCv.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap&family=Permanent+Marker&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&display=swap"
       rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Jura"
-      rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Google tag (gtag.js) -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-3BS5N4R20S"></script>
@@ -69,107 +72,154 @@
     </script>
   </head>
   <body>
-    <div class="header-div">
-      <div>
-        <p class="text-name">Ethan Katz</p>
-        <p class="text-bio">Student / Developer</p>
+    <header class="site-header">
+      <div class="identity">
+        <span class="identity__name">Ethan Katz</span>
+        <span class="identity__role">Student / Developer</span>
       </div>
-      <div class="nav-bar">
-        <a href="appstore/appstore.html">
-          <img
-            class="appstore-button"
-            src="https://ik.imagekit.io/ethankatz/image%203_d5ofz4-LZ.png?updatedAt=1715024123411"
-            alt="" />
-        </a>
-        <a href="Https://Github.com/Ethan-Katz" target="_blank">
-          <img
-            class="github-button"
-            src="https://ik.imagekit.io/ethankatz/githubimage_bPc_3LEwG.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300149205"
-            alt="" />
-        </a>
-        <a href="https://linkedin.com/in/ethanrkatz" target="_blank">
-          <img
-            class="linkedin-button"
-            src="https://ik.imagekit.io/ethankatz/Linkedin__H7a9CwIHK.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300155496"
-            alt="" />
-        </a>
-        <div class="pill-button">
-          <a href="resume/cv.html" target="_blank"
-            ><button class="resume-button">RESUME</button></a
-          >
-          <a href="Resume-EthanKatz.pdf" download="Resume-EthanKatz"
-            ><button class="download-button fa fa-download"></button
-          ></a>
-        </div>
-      </div>
-      <i class="fa-solid fa-bars menu-bar"></i>
-      <div class="nav-bar-mobile">
-        <a href="contact/contact.html">
-          <button class="non-floating-button">
-            <i class="fa-solid fa-user floating-user"></i>
-            <p class="floating-text">Contact Me</p>
-          </button>
-        </a>
-        <i class="fa-solid fa-x close-button"></i>
-        <a class="appstore-a" href="appstore/appstore.html">
-          <img
-            class="appstore-button"
-            src="https://ik.imagekit.io/ethankatz/image%203_d5ofz4-LZ.png?updatedAt=1715024123411"
-            alt="" />
-        </a>
-        <a
-          class="github-a"
-          href="Https://Github.com/Ethan-Katz"
-          target="_blank">
-          <img
-            class="github-button"
-            src="https://ik.imagekit.io/ethankatz/githubimage_bPc_3LEwG.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300149205"
-            alt="" />
-        </a>
-        <a
-          class="linkedin-a"
-          href="https://linkedin.com/in/ethanrkatz"
-          target="_blank">
-          <img
-            class="linkedin-button"
-            src="https://ik.imagekit.io/ethankatz/Linkedin__H7a9CwIHK.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300155496"
-            alt="" />
-        </a>
-        <div class="pill-button">
-          <a href="resume/cv.html" target="_blank"
-            ><button class="resume-button">RESUME</button></a
-          >
-          <a href="Resume-EthanKatz.pdf" download="Resume-EthanKatz"
-            ><button class="download-button fa fa-download"></button
-          ></a>
-        </div>
-      </div>
-    </div>
-    <div class="main-div">
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Menu">
+        <svg
+          class="nav-toggle__open"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg
+          class="nav-toggle__close"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+
+      <nav class="site-nav" id="site-nav">
+        <ul class="site-nav__list">
+          <li class="site-nav__contact">
+            <a class="contact-dot" href="/contact/contact.html">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <span>Contact Me</span>
+            </a>
+          </li>
+          <li>
+            <a class="icon-link" href="/appstore/appstore.html">
+              <img
+                src="https://ik.imagekit.io/ethankatz/tr:w-120,h-120/image%203_d5ofz4-LZ.png?updatedAt=1715024123411"
+                width="120"
+                height="120"
+                alt="My apps on the App Store" />
+            </a>
+          </li>
+          <li>
+            <a
+              class="icon-link icon-link--invert"
+              href="https://github.com/Ethan-Katz"
+              target="_blank"
+              rel="noopener">
+              <img
+                src="https://ik.imagekit.io/ethankatz/tr:w-120,h-120/githubimage_bPc_3LEwG.png?updatedAt=1655300149205"
+                width="120"
+                height="120"
+                alt="GitHub" />
+            </a>
+          </li>
+          <li>
+            <a
+              class="icon-link"
+              href="https://linkedin.com/in/ethanrkatz"
+              target="_blank"
+              rel="noopener">
+              <img
+                src="https://ik.imagekit.io/ethankatz/tr:w-120,h-120/Linkedin__H7a9CwIHK.png?updatedAt=1655300155496"
+                width="120"
+                height="120"
+                alt="LinkedIn" />
+            </a>
+          </li>
+          <li>
+            <div class="resume-pill">
+              <a
+                class="resume-pill__view"
+                href="/resume/cv.html"
+                target="_blank"
+                rel="noopener"
+                >RESUME</a
+              >
+              <a
+                class="resume-pill__download"
+                href="/Resume-EthanKatz.pdf"
+                download="Resume-EthanKatz"
+                aria-label="Download my resume as a PDF">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16" />
+                </svg>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="hero">
       <img
-        class="background-image"
-        src="https://ik.imagekit.io/ethankatz/Desktop_TbOBhF9pt.svg?updatedAt=1715025002561"
-        alt="" />
-      <img
+        class="hero__portrait"
+        src="https://ik.imagekit.io/ethankatz/tr:w-620,h-620/IMG_0045_srifbNHCv.jpg?updatedAt=1703605185402"
+        width="620"
+        height="620"
         draggable="false"
-        src="https://ik.imagekit.io/ethankatz/IMG_0045_srifbNHCv.jpg?updatedAt=1703605185402"
-        alt=""
-        class="main-image" />
-      <p class="main-text">
+        alt="Ethan Katz" />
+      <p class="hero__lede">
         Hi, I'm Ethan Katz, a tech enthusiast studying Interactive
         Communications in UI/UX Product Design at Reichman University, Israel.
         With years of experience in hi-tech, I stay updated through blogs and
         videos, embracing the evolving tech landscape. In my free time, I enjoy
         coding and have apps on the App Store.
       </p>
-    </div>
-    <a href="contact/contact.html">
-      <button class="floating-button">
-        <i class="fa-solid fa-user floating-user"></i>
-        <p class="floating-text">Contact Me</p>
-      </button>
+    </main>
+
+    <a class="contact-dot contact-fab" href="/contact/contact.html">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        aria-hidden="true">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+      <span>Contact Me</span>
     </a>
 
-    <script src="script.js"></script>
+    <script src="/script.js?v=2.0"></script>
   </body>
 </html>
