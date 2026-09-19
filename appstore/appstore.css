@@ -1,53 +1,53 @@
 /* ==========================================================================
    My Apps. Tokens and shared furniture come from /style.css.
+   Each app is a plate on the drawing: icon, spec, store badge.
    ========================================================================== */
 
-body {
-  font-family: Jura, "Trebuchet MS", sans-serif;
-}
-
-/* --------------------------------------------------------------------------
-   Page header
-   -------------------------------------------------------------------------- */
-
-.apps-header {
+.page-head {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 3vw, 2rem);
-  padding: clamp(1.5rem, 4vw, 2.75rem) var(--gutter) 0;
+  gap: clamp(0.875rem, 2.5vw, 1.5rem);
+  padding-bottom: clamp(1rem, 2.5vw, 1.75rem);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .back-link {
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  width: clamp(2.75rem, 4vw, 3.5rem);
-  height: clamp(2.75rem, 4vw, 3.5rem);
-  border-radius: 50%;
+  width: 2.75rem;
+  height: 2.75rem;
   border: 1px solid var(--hairline);
   color: var(--ink);
   transition:
-    transform var(--dur) var(--ease),
     color var(--dur) var(--ease),
     border-color var(--dur) var(--ease);
 }
 
 .back-link svg {
-  width: 55%;
-  height: 55%;
+  width: 45%;
+  height: 45%;
 }
 
-.apps-title {
+.page-title {
   margin: 0;
-  font-family: "Permanent Marker", Jura, cursive;
-  font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3.5rem);
-  font-weight: 400;
-  letter-spacing: 0.01em;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1rem + 1vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.page-count {
+  margin-left: auto;
+  font-size: var(--type-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
 /* --------------------------------------------------------------------------
-   The grid. auto-fit means it reflows for two apps, three, or ten without
-   anyone touching the column maths again.
+   The plates
    -------------------------------------------------------------------------- */
 
 .app-grid {
@@ -55,64 +55,58 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-content: start;
-  justify-content: center;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  width: 100%;
-  max-width: 80rem;
-  margin-inline: auto;
-  padding: clamp(2rem, 5vw, 3.5rem) var(--gutter) clamp(3rem, 6vw, 5rem);
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  margin: var(--stack) 0 0;
+  padding: 0;
   list-style: none;
 }
 
 .app-card {
-  /* Grows to share the row, never wider than a comfortable column. Two apps
-     or five, the row just wraps. */
   flex: 1 1 19rem;
-  max-width: 24rem;
+  max-width: 26rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 2rem);
-  text-align: center;
+  gap: 0.875rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
   border: 1px solid var(--hairline);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.035);
-  box-shadow: var(--shadow-low);
-  transition:
-    transform var(--dur-slow) var(--ease),
-    border-color var(--dur-slow) var(--ease),
-    box-shadow var(--dur-slow) var(--ease);
+  background: var(--panel);
+  transition: border-color var(--dur-slow) var(--ease);
+}
+
+.app-card__plate {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--type-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
 .app-card__icon {
-  --size: clamp(6rem, 12vw, 8.5rem);
+  --size: clamp(5rem, 10vw, 7rem);
   width: var(--size);
   height: var(--size);
-  border-radius: 24%; /* the iOS squircle, roughly */
+  border: 1px solid var(--hairline);
   object-fit: cover;
-  box-shadow:
-    var(--shadow-low),
-    0 0 0 1px var(--hairline);
 }
 
 .app-card__name {
   margin: 0;
-  font-family: "Permanent Marker", Jura, cursive;
-  font-size: clamp(1.35rem, 1.1rem + 0.7vw, 1.9rem);
-  font-weight: 400;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.6rem);
+  font-weight: 500;
   line-height: 1.2;
 }
 
 .app-card__bio {
   margin: 0;
-  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.0625rem);
+  font-size: clamp(0.75rem, 0.72rem + 0.2vw, 0.85rem);
   line-height: 1.65;
   text-wrap: pretty;
   color: var(--ink-dim);
 }
 
-/* Push the store badge to the bottom so cards of unequal text still line up. */
+/* Pushed to the bottom so badges line up across a row. */
 .app-card__store {
   margin-top: auto;
   padding-top: 0.5rem;
@@ -120,51 +114,28 @@ body {
 
 .app-card__badge {
   display: block;
-  width: clamp(8.5rem, 14vw, 11rem);
+  width: clamp(8.5rem, 14vw, 10rem);
   height: auto;
-  transition: transform var(--dur) var(--ease);
-}
-
-/* Fallback for an app that is not on the App Store yet. */
-.app-card__link {
-  display: inline-block;
-  padding: 0.6em 1.4em;
-  border-radius: var(--radius-pill);
-  background: var(--accent-deep);
-  color: var(--accent-ink);
-  font-size: var(--type-ui);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  transition:
-    transform var(--dur) var(--ease),
-    background var(--dur) var(--ease);
+  transition: opacity var(--dur) var(--ease);
 }
 
 @media (hover: hover) {
   .app-card:hover {
-    transform: translateY(-4px);
     border-color: var(--hairline-lit);
-    box-shadow: var(--shadow-high);
   }
 
   .app-card__badge:hover {
-    transform: scale(1.05);
-  }
-
-  .app-card__link:hover {
-    background: var(--accent);
-    transform: scale(1.04);
+    opacity: 0.82;
   }
 
   .back-link:hover {
-    transform: scale(1.08);
     color: var(--accent);
     border-color: var(--hairline-lit);
   }
 }
 
 @media (max-width: 560px) {
-  .app-grid {
-    gap: 1.25rem;
+  .app-card {
+    max-width: none;
   }
 }

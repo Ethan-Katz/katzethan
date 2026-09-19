@@ -1,46 +1,54 @@
 /* ==========================================================================
    Ethan Katz — katzethan.com
-   Design tokens, then the home page. Hand written, no build step.
+   "Bench": the site as a technical drawing. Graph paper, mono annotations,
+   a ruled sheet. Tokens first, then the shared furniture, then the home page.
+   Hand written, no build step.
    ========================================================================== */
 
 :root {
-  /* Colour */
-  --bg-top: #020617;
-  --bg-bottom: #08133f;
-  --ink: #f3f6ff;
-  --ink-dim: #a8b5d8;
-  --hairline: rgba(255, 255, 255, 0.14);
-  --hairline-lit: rgba(255, 255, 255, 0.32);
-  --panel: rgba(9, 20, 58, 0.92);
-  --accent: #16f957;
-  --accent-deep: #069d31;
-  --accent-ink: #04140a;
+  /* Ink and paper */
+  --bg-top: #0e1b24;
+  --bg-bottom: #0b161d;
+  --grid-line: #172e3a;
+  --panel: #132734;
+  --ink: #e8f1f5;
+  --ink-dim: #9fb6c2;
+  --ink-faint: #7e99a6;
+  --hairline: #35596b;
+  --hairline-lit: #5a8298;
 
-  /* Fluid type. Small end is phone, large end is a big desktop, and the
-     middle grows with the viewport instead of tracking it 1:1. */
-  --type-name: clamp(2.25rem, 1.35rem + 4vw, 4.75rem);
-  --type-role: clamp(1rem, 0.85rem + 0.7vw, 1.75rem);
-  --type-lede: clamp(1.05rem, 0.95rem + 0.55vw, 1.5rem);
-  --type-ui: clamp(0.95rem, 0.9rem + 0.35vw, 1.35rem);
-  --type-micro: clamp(0.625rem, 0.6rem + 0.1vw, 0.75rem);
+  /* One warm accent against all that blue, plus a cool one for labels. */
+  --accent: #ffb547;
+  --accent-deep: #e09a2e;
+  --accent-ink: #0e1b24;
+  --cyan: #8fd3e8;
+
+  /* Type. Display is the drawn lettering, mono is every label and annotation. */
+  --font-display: "Space Grotesk", "Trebuchet MS", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
+
+  --type-name: clamp(3rem, 1.6rem + 6vw, 6.75rem);
+  --type-role: clamp(0.85rem, 0.8rem + 0.25vw, 1rem);
+  --type-lede: clamp(1.05rem, 0.98rem + 0.4vw, 1.3rem);
+  --type-ui: clamp(0.75rem, 0.72rem + 0.15vw, 0.85rem);
+  --type-micro: clamp(0.625rem, 0.6rem + 0.1vw, 0.7rem);
 
   /* Space */
-  --gutter: clamp(1.25rem, 4vw, 5rem);
-  --stack: clamp(1.5rem, 4vw, 3.5rem);
+  --gutter: clamp(0.75rem, 2.5vw, 2.5rem);
+  --sheet-pad: clamp(1.25rem, 3.5vw, 3.25rem);
+  --stack: clamp(1.75rem, 4vw, 3.5rem);
 
-  /* Shape */
-  --radius: 1.25rem;
-  --radius-pill: 999px;
+  /* Shape. Square corners: this is a drawing, not a card. */
+  --radius: 0;
+  --radius-pill: 0;
 
-  /* Depth */
-  --shadow-low: 0 1px 2px rgba(2, 6, 23, 0.4), 0 6px 18px rgba(2, 6, 23, 0.35);
-  --shadow-high:
-    0 2px 6px rgba(2, 6, 23, 0.45), 0 18px 45px rgba(2, 6, 23, 0.5);
+  --shadow-low: none;
+  --shadow-high: none;
 
   /* Motion */
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --dur: 200ms;
-  --dur-slow: 320ms;
+  --dur: 160ms;
+  --dur-slow: 260ms;
 }
 
 *,
@@ -56,20 +64,33 @@ html {
 body {
   margin: 0;
   min-height: 100svh;
-  font-family: Jura, "Trebuchet MS", sans-serif;
+  font-family: var(--font-mono);
   color: var(--ink);
-  /* Propagates to the canvas, so it spans the whole document rather than
-     tiling once per viewport. */
-  background: linear-gradient(var(--bg-top), var(--bg-bottom)) no-repeat;
-  background-color: var(--bg-bottom);
+  background-color: var(--bg-top);
+  /* The graph paper. Two repeating gradients, no image to download. */
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--grid-line) 0 1px,
+      transparent 1px 40px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--grid-line) 0 1px,
+      transparent 1px 40px
+    );
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
 }
 
 a {
-  color: inherit;
+  color: var(--accent);
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-deep);
 }
 
 img,
@@ -77,175 +98,178 @@ svg {
   display: block;
 }
 
-/* One focus ring for the whole site. */
 :where(a, button):focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 6px;
 }
 
 /* --------------------------------------------------------------------------
-   Header
+   The sheet: the ruled frame every page sits inside
+   -------------------------------------------------------------------------- */
+
+.sheet {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 82rem;
+  margin: var(--gutter) auto;
+  padding: var(--sheet-pad);
+  border: 1px solid var(--hairline);
+  background: rgba(14, 27, 36, 0.72);
+}
+
+/* The drawing's header strip: who and what, in the corner of the sheet. */
+.sheet__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--type-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sheet__mark {
+  color: var(--cyan);
+}
+
+.sheet__rev {
+  color: var(--ink-faint);
+}
+
+/* --------------------------------------------------------------------------
+   Labels and rules used throughout
+   -------------------------------------------------------------------------- */
+
+.label {
+  margin: 0;
+  font-size: var(--type-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.label--muted {
+  color: var(--ink-faint);
+}
+
+/* The dimension line under the name, drawn with arrowheads like a plan. */
+.dim-rule {
+  width: min(32rem, 100%);
+  height: auto;
+  margin-top: clamp(0.75rem, 2vw, 1.25rem);
+  color: var(--cyan);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.875rem;
+  padding: 0.9em 1.75em;
+  font-family: var(--font-mono);
+  font-size: var(--type-ui);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.btn--solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn--ghost {
+  color: var(--cyan);
+  border-color: var(--hairline);
+}
+
+/* --------------------------------------------------------------------------
+   Header and navigation
    -------------------------------------------------------------------------- */
 
 .site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding: clamp(1.25rem, 3vw, 2rem) var(--gutter);
+  gap: 1rem;
+  padding-bottom: clamp(1rem, 2.5vw, 1.75rem);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .identity {
-  display: grid;
-  gap: 0.15em;
-  line-height: 1.05;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .identity__name {
-  font-size: var(--type-name);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .identity__role {
   font-size: var(--type-role);
-  font-weight: 500;
-  color: var(--ink-dim);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
-
-/* --------------------------------------------------------------------------
-   Navigation
-   -------------------------------------------------------------------------- */
 
 .site-nav__list {
   display: flex;
   align-items: center;
-  gap: clamp(0.85rem, 1.8vw, 1.75rem);
+  gap: clamp(0.85rem, 2vw, 1.75rem);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Circular icon links (App Store, GitHub, LinkedIn). */
-.icon-link {
-  --icon-size: clamp(2.5rem, 4vw, 3.75rem);
-  display: block;
-  width: var(--icon-size);
-  height: var(--icon-size);
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px var(--hairline);
-  transition:
-    transform var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
-}
-
-.icon-link img {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  object-fit: cover;
-}
-
-.icon-link--invert img {
-  filter: invert(1);
-}
-
-/* Résumé pill: view on the left, download on the right. */
-.resume-pill {
-  display: flex;
-  border-radius: var(--radius-pill);
-  overflow: hidden;
-  box-shadow: var(--shadow-low);
-  transition: transform var(--dur) var(--ease);
-}
-
-.resume-pill__view,
-.resume-pill__download {
-  display: grid;
-  place-items: center;
-  height: clamp(2.5rem, 4vw, 3.75rem);
-  border: 0;
-  font-family: inherit;
+.nav-link {
   font-size: var(--type-ui);
-  font-weight: 600;
-  color: var(--accent-ink);
-  cursor: pointer;
-}
-
-.resume-pill__view {
-  padding-inline: clamp(1rem, 2.2vw, 2rem);
-  background: var(--accent-deep);
-  letter-spacing: 0.12em;
-}
-
-.resume-pill__download {
-  width: clamp(2.75rem, 4.5vw, 4rem);
-  background: var(--accent);
-  border-left: 1px solid rgba(4, 20, 10, 0.25);
-}
-
-.resume-pill__download svg {
-  width: 1.2em;
-  height: 1.2em;
-}
-
-/* Contact, both as the desktop floating button and inside the mobile menu. */
-.contact-dot {
-  --dot-size: clamp(5rem, 6.5vw, 6.25rem);
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 0.25em;
-  width: var(--dot-size);
-  height: var(--dot-size);
-  border-radius: 50%;
-  border: 1px solid var(--hairline);
-  background: radial-gradient(circle at 30% 25%, #0d1c50, var(--bg-top));
-  box-shadow: var(--shadow-high);
-  transition:
-    transform var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
-}
-
-.contact-dot svg {
-  width: 1.9em;
-  height: 1.9em;
-  color: var(--accent);
-}
-
-.contact-dot span {
-  font-size: var(--type-micro);
-  letter-spacing: 0.06em;
-  white-space: nowrap;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-dim);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition:
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
 }
 
-.contact-fab {
-  position: fixed;
-  right: var(--gutter);
-  bottom: clamp(1.25rem, 3vw, 2.5rem);
-  z-index: 3;
-}
-
-/* Hamburger. Hidden until the layout narrows. */
 .nav-toggle {
   display: none;
-  width: 3rem;
-  height: 3rem;
-  padding: 0;
-  place-items: center;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 0.875rem;
+  font-family: var(--font-mono);
+  font-size: var(--type-ui);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--ink);
   background: none;
-  border: 0;
+  border: 1px solid var(--hairline);
   cursor: pointer;
 }
 
 .nav-toggle svg {
-  width: 2rem;
-  height: 2rem;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .nav-toggle__close,
@@ -257,59 +281,215 @@ svg {
   display: block;
 }
 
-/* Contact only belongs in the nav once the floating button is gone. */
-.site-nav__contact {
-  display: none;
-}
-
 /* --------------------------------------------------------------------------
-   Hero
+   Home page: the drawing itself
    -------------------------------------------------------------------------- */
 
 .hero {
-  position: relative;
-  flex: 1;
-  display: grid;
-  justify-items: center;
-  gap: var(--stack);
-  padding: 0 var(--gutter) clamp(6rem, 12vw, 9rem);
+  display: flex;
+  gap: clamp(1.75rem, 4vw, 3.25rem);
+  align-items: flex-start;
+  padding-top: var(--stack);
 }
 
-/* The decorative arc behind the portrait. */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  top: 0;
-  width: min(80%, 1400px);
-  aspect-ratio: 2 / 1;
-  margin-inline: auto;
-  background: url("https://ik.imagekit.io/ethankatz/Desktop_TbOBhF9pt.svg?updatedAt=1715025002561")
-    top center / 100% auto no-repeat;
-  z-index: -1;
-  pointer-events: none;
+.hero__body {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-.hero__portrait {
-  --size: clamp(11rem, 24vw, 19rem);
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--hairline-lit);
-  box-shadow: var(--shadow-high);
-  transition: transform var(--dur-slow) var(--ease);
+.hero__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--type-name);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.hero__tags {
+  margin-top: 0.625rem;
 }
 
 .hero__lede {
-  max-width: 58ch;
-  margin: 0;
+  margin: clamp(1.25rem, 3vw, 1.875rem) 0 0;
+  max-width: 34em;
+  font-family: var(--font-display);
   font-size: var(--type-lede);
-  font-weight: 500;
-  line-height: 1.6;
-  text-align: center;
+  line-height: 1.65;
   text-wrap: pretty;
-  color: var(--ink);
+  color: var(--ink-dim);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.5rem, 3vw, 2.125rem);
+}
+
+/* Fig. A — the portrait, captioned like a plate in a manual. */
+.figure {
+  flex: 0 0 auto;
+  width: clamp(11rem, 26vw, 22.5rem);
+}
+
+.figure__frame {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid var(--hairline);
+  background: var(--panel);
+}
+
+.figure__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.figure__caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  font-size: var(--type-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* --------------------------------------------------------------------------
+   Parts list: the apps, as a bill of materials
+   -------------------------------------------------------------------------- */
+
+.parts {
+  margin: var(--stack) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.parts__caption {
+  margin-bottom: 0.875rem;
+}
+
+.part {
+  display: grid;
+  grid-template-columns: 3.5rem 5.25rem minmax(0, 1fr) auto;
+  gap: 0 clamp(0.875rem, 2vw, 1.5rem);
+  align-items: center;
+  padding: clamp(1rem, 2.5vw, 1.5rem) 0;
+  border-bottom: 1px solid #22404f;
+}
+
+.part:first-child {
+  border-top: 1px solid var(--hairline);
+}
+
+.part__no {
+  font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1.125rem);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.part__icon {
+  /* Both dimensions pinned: an `aspect-ratio` alone loses to the img's own
+     height attribute, which is a specified height, not auto. */
+  --size: 5.25rem;
+  width: var(--size);
+  height: var(--size);
+  border: 1px solid var(--hairline);
+  background: var(--panel);
+  object-fit: cover;
+}
+
+.part__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.part__desc {
+  margin: 0.3rem 0 0;
+  font-size: clamp(0.75rem, 0.72rem + 0.2vw, 0.85rem);
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+
+.part__link {
+  font-size: var(--type-ui);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Side project band
+   -------------------------------------------------------------------------- */
+
+.band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(0.875rem, 2.5vw, 2rem);
+  margin-top: var(--stack);
+  padding: clamp(1.125rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--hairline);
+  background: var(--panel);
+}
+
+.band__body {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.band__name {
+  margin: 0.375rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.6rem);
+  font-weight: 500;
+}
+
+.band__desc {
+  margin: 0.375rem 0 0;
+  font-size: clamp(0.75rem, 0.72rem + 0.2vw, 0.85rem);
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+
+/* --------------------------------------------------------------------------
+   Title block: the boxed panel a drawing signs off with
+   -------------------------------------------------------------------------- */
+
+.titleblock {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: var(--stack);
+  border: 1px solid var(--hairline);
+}
+
+.titleblock__cell {
+  flex: 1 1 13rem;
+  min-width: 0;
+  padding: clamp(0.875rem, 2vw, 1.125rem) clamp(1rem, 2vw, 1.375rem);
+  border-right: 1px solid var(--hairline);
+}
+
+.titleblock__cell:last-child {
+  border-right: 0;
+}
+
+.titleblock__value {
+  margin: 0.375rem 0 0;
+  font-size: clamp(0.8rem, 0.76rem + 0.2vw, 0.9rem);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.titleblock__sep {
+  color: #4a6b7a;
 }
 
 /* --------------------------------------------------------------------------
@@ -317,39 +497,38 @@ svg {
    -------------------------------------------------------------------------- */
 
 @media (hover: hover) {
-  .icon-link:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 0 1px var(--hairline-lit);
+  .btn--solid:hover {
+    background: var(--accent-deep);
   }
 
-  .resume-pill:hover {
-    transform: scale(1.04);
+  .btn--ghost:hover {
+    color: var(--accent);
+    border-color: var(--hairline-lit);
   }
 
-  .contact-dot:hover {
-    transform: translateY(-3px) scale(1.04);
-    box-shadow:
-      var(--shadow-high),
-      0 0 0 1px var(--hairline-lit);
+  .nav-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
   }
 
-  .hero__portrait:hover {
-    transform: scale(1.04);
+  .nav-toggle:hover {
+    border-color: var(--hairline-lit);
+  }
+
+  .part:hover {
+    background: rgba(19, 39, 52, 0.55);
   }
 }
 
 /* --------------------------------------------------------------------------
-   Narrow layouts. Driven by width, not orientation, so a phone held
-   sideways and a half-width desktop window both get the compact nav.
+   Narrow layouts. Driven by width, not orientation.
    -------------------------------------------------------------------------- */
 
 @media (max-width: 900px) {
   .nav-toggle {
-    display: grid;
-  }
-
-  .contact-fab {
-    display: none;
+    display: inline-flex;
+    position: relative;
+    z-index: 5;
   }
 
   .site-nav {
@@ -360,8 +539,8 @@ svg {
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: var(--gutter);
-    background: rgba(2, 6, 23, 0.72);
-    backdrop-filter: blur(6px);
+    background: rgba(11, 22, 29, 0.86);
+    backdrop-filter: blur(4px);
     opacity: 0;
     visibility: hidden;
     transition:
@@ -375,109 +554,63 @@ svg {
   }
 
   .site-nav__list {
-    /* auto margins rather than centring the flex line, so a panel taller
-       than the screen stays scrollable at both ends. */
     margin: auto;
     flex-direction: column;
-    gap: clamp(1.25rem, 4vw, 2rem);
-    width: min(22rem, 100%);
-    padding: clamp(1.75rem, 6vw, 2.5rem);
+    align-items: stretch;
+    gap: 0;
+    width: min(20rem, 100%);
     border: 1px solid var(--hairline);
-    border-radius: var(--radius);
     background: var(--panel);
-    box-shadow: var(--shadow-high);
-    transform: translateY(-0.75rem) scale(0.98);
-    transition: transform var(--dur) var(--ease);
   }
 
-  .site-nav[data-open="true"] .site-nav__list {
-    transform: none;
+  .site-nav__list li {
+    border-bottom: 1px solid var(--hairline);
   }
 
-  .site-nav__contact {
+  .site-nav__list li:last-child {
+    border-bottom: 0;
+  }
+
+  .nav-link {
     display: block;
-  }
-
-  .site-nav__contact .contact-dot {
-    --dot-size: 6.75rem;
-  }
-
-  /* The menu has room, so let the controls grow. */
-  .icon-link {
-    --icon-size: 4rem;
-  }
-
-  .resume-pill__view,
-  .resume-pill__download {
-    height: 3.5rem;
-    font-size: 1.125rem;
-  }
-
-  .resume-pill__download {
-    width: 4rem;
-  }
-
-  /* The toggle sits above the open overlay. */
-  .nav-toggle {
-    position: relative;
-    z-index: 5;
-  }
-
-  .hero::before {
-    display: none;
+    padding: 1.125rem 1.25rem;
+    border-bottom: 0;
+    font-size: 0.875rem;
   }
 
   .hero {
-    padding-bottom: var(--stack);
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .figure {
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .part {
+    grid-template-columns: 2.5rem 3.75rem minmax(0, 1fr);
+    row-gap: 0.75rem;
+  }
+
+  .part__icon {
+    --size: 3.75rem;
+  }
+
+  .part__link {
+    grid-column: 2 / -1;
   }
 }
 
 @media (max-width: 560px) {
+  .sheet {
+    margin-inline: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
   .site-header {
-    align-items: flex-start;
-  }
-
-  .hero__portrait {
-    --size: min(62vw, 15rem);
-  }
-}
-
-@media (max-width: 900px) and (max-height: 560px) {
-  .site-nav__list {
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    width: min(34rem, 100%);
-    gap: 1rem;
-    padding: 1.25rem;
-  }
-
-  .icon-link {
-    --icon-size: 3.25rem;
-  }
-
-  .site-nav__contact .contact-dot {
-    --dot-size: 5.5rem;
-  }
-
-  .resume-pill__view,
-  .resume-pill__download {
-    height: 3rem;
-  }
-
-  .resume-pill__download {
-    width: 3.5rem;
-  }
-}
-
-/* Short landscape phones: the portrait should not eat the whole screen. */
-@media (max-height: 520px) and (orientation: landscape) {
-  .hero__portrait {
-    --size: min(30vh, 10rem);
-  }
-
-  .hero {
-    gap: 1.25rem;
   }
 }
 
