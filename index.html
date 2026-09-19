@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/style.css?v=1.0" />
@@ -79,43 +79,54 @@
           <img
             class="appstore-button"
             src="https://ik.imagekit.io/ethankatz/image%203_d5ofz4-LZ.png?updatedAt=1715024123411"
-            alt="" />
+            alt="My apps" />
         </a>
         <a href="Https://Github.com/Ethan-Katz" target="_blank">
           <img
             class="github-button"
             src="https://ik.imagekit.io/ethankatz/githubimage_bPc_3LEwG.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300149205"
-            alt="" />
+            alt="My GitHub profile" />
         </a>
         <a href="https://linkedin.com/in/ethanrkatz" target="_blank">
           <img
             class="linkedin-button"
             src="https://ik.imagekit.io/ethankatz/Linkedin__H7a9CwIHK.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300155496"
-            alt="" />
+            alt="My LinkedIn profile" />
         </a>
         <div class="pill-button">
-          <a href="resume/cv.html" target="_blank"
-            ><button class="resume-button">RESUME</button></a
+          <a class="resume-button" href="resume/cv.html" target="_blank"
+            >RESUME</a
           >
-          <a href="Resume-EthanKatz.pdf" download="Resume-EthanKatz"
-            ><button class="download-button fa fa-download"></button
-          ></a>
+          <a
+            class="download-button fa fa-download"
+            href="Resume-EthanKatz.pdf"
+            download="Resume-EthanKatz"
+            aria-label="Download my resume as a PDF"></a>
         </div>
       </div>
-      <i class="fa-solid fa-bars menu-bar"></i>
-      <div class="nav-bar-mobile">
+      <button
+        class="menu-bar"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="nav-bar-mobile">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+      <div class="nav-bar-mobile" id="nav-bar-mobile">
         <a href="contact/contact.html">
           <button class="non-floating-button">
-            <i class="fa-solid fa-user floating-user"></i>
+            <i class="fa-solid fa-user floating-user" aria-hidden="true"></i>
             <p class="floating-text">Contact Me</p>
           </button>
         </a>
-        <i class="fa-solid fa-x close-button"></i>
+        <button class="close-button" type="button" aria-label="Close menu">
+          <i class="fa-solid fa-x" aria-hidden="true"></i>
+        </button>
         <a class="appstore-a" href="appstore/appstore.html">
           <img
             class="appstore-button"
             src="https://ik.imagekit.io/ethankatz/image%203_d5ofz4-LZ.png?updatedAt=1715024123411"
-            alt="" />
+            alt="My apps" />
         </a>
         <a
           class="github-a"
@@ -124,7 +135,7 @@
           <img
             class="github-button"
             src="https://ik.imagekit.io/ethankatz/githubimage_bPc_3LEwG.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300149205"
-            alt="" />
+            alt="My GitHub profile" />
         </a>
         <a
           class="linkedin-a"
@@ -133,15 +144,17 @@
           <img
             class="linkedin-button"
             src="https://ik.imagekit.io/ethankatz/Linkedin__H7a9CwIHK.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300155496"
-            alt="" />
+            alt="My LinkedIn profile" />
         </a>
         <div class="pill-button">
-          <a href="resume/cv.html" target="_blank"
-            ><button class="resume-button">RESUME</button></a
+          <a class="resume-button" href="resume/cv.html" target="_blank"
+            >RESUME</a
           >
-          <a href="Resume-EthanKatz.pdf" download="Resume-EthanKatz"
-            ><button class="download-button fa fa-download"></button
-          ></a>
+          <a
+            class="download-button fa fa-download"
+            href="Resume-EthanKatz.pdf"
+            download="Resume-EthanKatz"
+            aria-label="Download my resume as a PDF"></a>
         </div>
       </div>
     </div>
@@ -153,7 +166,7 @@
       <img
         draggable="false"
         src="https://ik.imagekit.io/ethankatz/IMG_0045_srifbNHCv.jpg?updatedAt=1703605185402"
-        alt=""
+        alt="Ethan Katz"
         class="main-image" />
       <p class="main-text">
         Hi, I'm Ethan Katz, a tech enthusiast studying Interactive
@@ -165,7 +178,7 @@
     </div>
     <a href="contact/contact.html">
       <button class="floating-button">
-        <i class="fa-solid fa-user floating-user"></i>
+        <i class="fa-solid fa-user floating-user" aria-hidden="true"></i>
         <p class="floating-text">Contact Me</p>
       </button>
     </a>

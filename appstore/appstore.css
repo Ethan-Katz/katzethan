@@ -154,3 +154,13 @@ a {
     margin-top: 3rem;
   }
 }
+
+/* Keyboard focus needs to be visible against the dark background. */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #16f957;
+  outline-offset: 3px;
+}
