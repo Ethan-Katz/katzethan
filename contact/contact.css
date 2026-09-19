@@ -69,6 +69,47 @@ input[type="submit"]:hover {
   min-height: 100%;
 }
 
+/* Netlify honeypot: hidden from people, left in the DOM for bots */
+.hidden {
+  display: none;
+}
+
+/* Thank you page */
+.thanks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-inline: 12%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.thanks-title {
+  color: orange;
+  font-size: calc(1.9vw + var(--mobileText));
+  font-family: Jura;
+  margin-bottom: 0.25em;
+}
+
+.thanks-text {
+  color: white;
+  font-size: 1.3vw;
+  margin-top: 0;
+}
+
+.thanks-link {
+  color: #8b5cf6;
+  font-size: 1.3vw;
+  margin-top: 1em;
+  transition: color 0.5s;
+}
+
+.thanks-link:hover {
+  color: #6d28d9;
+}
+
 /* Header */
 .contactme {
   color: orange;
@@ -197,8 +238,13 @@ label {
     width: 100%;
     font-size: 2.5svh;
   }
-  .contactme {
+  .contactme,
+  .thanks-title {
     font-size: 3.5svh;
+  }
+  .thanks-text,
+  .thanks-link {
+    font-size: 2.5svh;
   }
 
   input[type="text"],
@@ -224,8 +270,13 @@ label {
     width: 100%;
     font-size: 2.5svh;
   }
-  .contactme {
+  .contactme,
+  .thanks-title {
     font-size: 3.5svh;
+  }
+  .thanks-text,
+  .thanks-link {
+    font-size: 2.5svh;
   }
 
   input[type="text"],
