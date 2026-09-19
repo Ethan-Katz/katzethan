@@ -1,299 +1,261 @@
-:root {
-  --mobile: 0%;
-  --mobileArrow: 0vw;
-  --mobileText: 0%;
-}
+/* ==========================================================================
+   Contact and thanks. Tokens and shared furniture come from /style.css.
+   ========================================================================== */
 
 body {
-  font-family: Jura;
-  background: linear-gradient(#020617, #08133f);
-  margin: 0;
+  font-family: Jura, "Trebuchet MS", sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Page header. Same furniture as the apps page, so moving between them
+   feels like one site.
+   -------------------------------------------------------------------------- */
+
+.page-header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100svh;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1.5rem, 4vw, 2.75rem) var(--gutter) 0;
 }
 
-a {
-  text-decoration: none;
+.back-link {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: clamp(2.75rem, 4vw, 3.5rem);
+  height: clamp(2.75rem, 4vw, 3.5rem);
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  color: var(--ink);
+  transition:
+    transform var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
 }
 
-/* Form */
-input[type="text"],
-input[type="email"],
-select,
-textarea {
-  height: 1vw;
-  width: 30vw;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: none;
-  font-family: Jura;
-}
-textarea {
-  height: 10vh;
+.back-link:hover {
+  transform: translateX(-2px);
+  border-color: var(--hairline-lit);
+  color: var(--accent);
 }
 
-input[type="submit"] {
-  background-color: #8b5cf6;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 16px;
+.back-link svg {
+  width: 55%;
+  height: 55%;
+}
+
+.page-title {
+  margin: 0;
+  font-family: "Permanent Marker", Jura, cursive;
+  font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   The sheet the form sits on. One column that stops growing at a readable
+   width, rather than a circle the fields have to fit inside.
+   -------------------------------------------------------------------------- */
+
+.sheet {
+  flex: 1;
+  width: 100%;
+  max-width: 46rem;
   margin-inline: auto;
-  transition: background-color 0.5s;
-  font-family: Jura;
-  width: 8vw;
-  height: 3vw;
-  font-size: 1.5vw;
-  
+  padding: clamp(1.75rem, 5vw, 3rem) var(--gutter) clamp(3rem, 6vw, 5rem);
 }
 
-input[type="submit"]:hover {
-  background-color: #6d28d9;
+.sheet__lede {
+  margin: 0 0 clamp(1.5rem, 4vw, 2.25rem);
+  font-size: var(--type-lede);
+  line-height: 1.5;
+  color: var(--ink-dim);
+  max-width: 34ch;
 }
+
+/* --------------------------------------------------------------------------
+   Form
+   -------------------------------------------------------------------------- */
 
 .form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-inline: auto;
-  width: fit-content;
-  font-size: 1.3vw;
-  min-height: 100%;
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.4rem);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: var(--shadow-low);
 }
 
-/* Netlify honeypot: hidden from people, left in the DOM for bots */
-.hidden {
-  display: none;
+/* Two names side by side once there is room, stacked when there is not. */
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.4rem);
 }
 
-/* Thank you page */
+.field {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.field label {
+  font-size: var(--type-ui);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink-dim);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.75em 0.9em;
+  font-family: inherit;
+  font-size: var(--type-ui);
+  color: var(--ink);
+  background: rgba(2, 6, 23, 0.55);
+  border: 1px solid var(--hairline);
+  border-radius: 0.65rem;
+  transition:
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 8rem;
+  line-height: 1.5;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(168, 181, 216, 0.55);
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--hairline-lit);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: transparent;
+  background: rgba(2, 6, 23, 0.8);
+}
+
+/* The bot trap. Off-screen rather than display:none, which some browsers
+   and bots treat as a reason to skip the field entirely. */
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.submit {
+  justify-self: start;
+  padding: 0.7em 2em;
+  font-family: inherit;
+  font-size: var(--type-ui);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  background: linear-gradient(var(--accent), var(--accent-deep));
+  border: 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    transform var(--dur) var(--ease),
+    filter var(--dur) var(--ease);
+}
+
+.submit:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.submit:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 30rem) {
+  .submit {
+    justify-self: stretch;
+    text-align: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Thanks
+   -------------------------------------------------------------------------- */
+
 .thanks {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding-inline: 12%;
-  box-sizing: border-box;
-  text-align: center;
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: var(--shadow-low);
 }
 
-.thanks-title {
-  color: orange;
-  font-size: calc(1.9vw + var(--mobileText));
-  font-family: Jura;
-  margin-bottom: 0.25em;
-}
-
-.thanks-text {
-  color: white;
-  font-size: 1.3vw;
-  margin-top: 0;
-}
-
-.thanks-link {
-  color: #8b5cf6;
-  font-size: 1.3vw;
-  margin-top: 1em;
-  transition: color 0.5s;
-}
-
-.thanks-link:hover {
-  color: #6d28d9;
-}
-
-/* Header */
-.contactme {
-  color: orange;
-  text-align: center;
-  font-size: calc(1.9vw + var(--mobileText));
-  margin-top: -1em;
-  font-family: Jura;
-}
-
-/* Floating Button */
-.floating-button {
-  --position: min(7vw, 7svh);
-  --size: max(4vw, 6svh);
-  position: absolute;
-  top: var(--position);
-  left: var(--position);
-  color: white;
-  border-radius: 50px;
-  text-align: center;
-  width: var(--size);
-  height: var(--size);
-  font-size: var(--size);
-  display: flex;
-}
-.floating-button:hover {
-  color: gray;
-}
-
-/* Main */
-.main-bubble {
-  width: calc(45vw + var(--mobile));
-  aspect-ratio: 1 /1;
+.thanks__mark {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
-  background: linear-gradient(#08133f, #020617);
-  transition: 0.5s;
-  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.25),
-    0px 0px 5px 3px rgba(0, 0, 0, 0.25);
+  color: var(--accent);
+  border: 1px solid var(--hairline-lit);
 }
 
-/* Arrows */
-.link-arrow-container {
-  position: absolute;
-  transform: translateX(5vw) translateY(-5vw);
-  margin: auto;
-  width: 0vw;
-  aspect-ratio: 1 /1;
-  z-index: 10;
+.thanks__mark svg {
+  width: 55%;
+  height: 55%;
 }
 
-.link-arrow {
-  position: absolute;
-  top: 100;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: 0vw;
-  width: 0vw;
-  border: calc(1vw + var(--mobileArrow)) solid;
-  border-color: #027fbd #027fbd transparent transparent;
-  transform: rotate(deg);
+.thanks__title {
+  margin: 0;
+  font-family: "Permanent Marker", Jura, cursive;
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+  font-weight: 400;
 }
 
-.git-arrow-container {
-  position: absolute;
-  transform: translateX(-2vw) translateY(-25vw);
-  margin: auto;
-  width: 0vw;
-  aspect-ratio: 1 /1;
-  z-index: 10;
+.thanks__text {
+  margin: 0;
+  font-size: var(--type-lede);
+  line-height: 1.55;
+  color: var(--ink-dim);
+  max-width: 38ch;
 }
 
-.git-arrow {
-  position: absolute;
-  top: 100;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: 0vw;
-  width: 0vw;
-  border: calc(1vw + var(--mobileArrow)) solid;
-  border-color: white white transparent transparent;
-  transform: rotate(55deg);
+.thanks__link {
+  margin-top: 0.5rem;
+  font-size: var(--type-ui);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ease);
 }
 
-.about-arrow-container {
-  position: absolute;
-  transform: translateX(43vw) translateY(-20vw);
-  margin: auto;
-  width: calc(15vw + var(--mobile));
-  aspect-ratio: 1 /1;
-  z-index: 5;
-  opacity: 1;
+.thanks__link:hover {
+  border-bottom-color: var(--accent);
 }
 
-.about-arrow {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 100;
-  margin: auto;
-  height: 0vw;
-  width: 0vw;
-  border: calc(1vw + var(--mobileArrow)) solid;
-  border-color: orange orange transparent transparent;
-  transform: rotate(245deg);
-}
-
-label {
-  color: white;
-}
-
-@media screen and (orientation: portrait) {
-  .main-bubble {
-    background: none;
-    width: 80%;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
   }
-  .about-arrow,
-  .link-arrow,
-  .git-arrow {
-    display: none;
-  }
-  .form {
-    width: 100%;
-    font-size: 2.5svh;
-  }
-  .contactme,
-  .thanks-title {
-    font-size: 3.5svh;
-  }
-  .thanks-text,
-  .thanks-link {
-    font-size: 2.5svh;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  select,
-  textarea {
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .main-bubble {
-    background: none;
-    width: 80%;
-  }
-  .about-arrow,
-  .link-arrow,
-  .git-arrow {
-    display: none;
-  }
-  .form {
-    width: 100%;
-    font-size: 2.5svh;
-  }
-  .contactme,
-  .thanks-title {
-    font-size: 3.5svh;
-  }
-  .thanks-text,
-  .thanks-link {
-    font-size: 2.5svh;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  select,
-  textarea {
-    width: 100%;
-    height: auto;
-  }
-}
-
-/* Keyboard focus needs to be visible against the dark background. */
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid #16f957;
-  outline-offset: 3px;
 }

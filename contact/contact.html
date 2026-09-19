@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/contact/contact.css?v=1.0" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact Me</title>
+
+    <link rel="stylesheet" href="/style.css?v=2.0" />
+    <link rel="stylesheet" href="/contact/contact.css?v=2.0" />
+
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -18,44 +22,29 @@
       type="image/png"
       sizes="16x16"
       href="https://ik.imagekit.io/ethankatz/IMG_0045_srifbNHCv.jpg" />
-    <title>Contact Me</title>
-    <meta name="title" content="Ethan Katz" />
+
+    <meta name="theme-color" content="#020617" />
+    <meta name="title" content="Contact Me — Ethan Katz" />
     <meta
       name="description"
-      content="Hi, I'm Ethan Katz, a tech enthusiast with multiple years of
-          experience in hi-tech. In 2025, I graduated from Reichman
-          University in Israel with a BA in Interactive Communications in UI/UX Product Design. I'm currently living in Israel but I grew up in Detroit,
-          Michigan. Besides for my education and professional endeavors, I love
-          staying up to date with the latest technology by reading blogs and
-          watching videos to broaden my horizons and embrace the ever-evolving
-          landscape of technology. In my free time, I enjoy coding
-          and I have created apps currently on the App Store." />
+      content="Send Ethan Katz a message." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://katzethan.com/" />
-    <meta property="og:title" content="Ethan Katz" />
+    <meta property="og:url" content="https://katzethan.com/contact/contact.html" />
+    <meta property="og:title" content="Contact Me — Ethan Katz" />
     <meta
       property="og:description"
-      content="Hi, I'm Ethan Katz, a tech enthusiast with multiple years of
-          experience in hi-tech. In 2025, I graduated from Reichman
-          University in Israel with a BA in Interactive Communications in UI/UX Product Design. I'm currently living in Israel but I grew up in Detroit,
-          Michigan. Besides for my education and professional endeavors, I love
-          staying up to date with the latest technology by reading blogs and
-          watching videos to broaden my horizons and embrace the ever-evolving
-          landscape of technology. In my free time, I enjoy coding
-          and I have created apps currently on the App Store." />
+      content="Send Ethan Katz a message." />
     <meta
       property="og:image"
       content="https://ik.imagekit.io/ethankatz/IMG_0045_srifbNHCv.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap&family=Permanent+Marker&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&family=Permanent+Marker&display=swap"
       rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
     <!-- Google tag (gtag.js) -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Jura"
-      rel="stylesheet" />
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-3BS5N4R20S"></script>
@@ -71,72 +60,88 @@
   </head>
 
   <body>
-    <section class="main-bubble">
+    <header class="page-header">
+      <a class="back-link" href="/index.html" aria-label="Back to the home page">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true">
+          <path d="M15 5l-7 7 7 7" />
+        </svg>
+      </a>
+      <h1 class="page-title">Contact Me</h1>
+    </header>
+
+    <main class="sheet">
+      <p class="sheet__lede">
+        Send me a message and I'll get back to you by email.
+      </p>
+
       <form
+        class="form"
         name="contact"
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
-        action="/contact/thanks.html"
-        class="form">
-        <p class="contactme">Contact Me</p>
+        action="/contact/thanks.html">
+        <div class="field-row">
+          <p class="field">
+            <label for="fname">First name</label>
+            <input
+              type="text"
+              id="fname"
+              name="firstname"
+              autocomplete="given-name"
+              placeholder="Your name"
+              required />
+          </p>
 
-        <label for="fname">First Name</label>
+          <p class="field">
+            <label for="lname">Last name</label>
+            <input
+              type="text"
+              id="lname"
+              name="lastname"
+              autocomplete="family-name"
+              placeholder="Your last name"
+              required />
+          </p>
+        </div>
 
-        <input
-          type="text"
-          id="fname"
-          name="firstname"
-          placeholder="Your name.."
-          required />
+        <p class="field">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            placeholder="Where I should reply"
+            required />
+        </p>
 
-        <label for="lname">Last Name</label>
+        <p class="field">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            placeholder="Write something"
+            required></textarea>
+        </p>
 
-        <input
-          type="text"
-          id="lname"
-          name="lastname"
-          placeholder="Your last name.."
-          required />
-
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter email.."
-          required />
-
-        <label for="message">Message</label>
-
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Write something.."
-          required></textarea>
-        <p class="hidden">
+        <p class="honeypot">
           <label>
             Don't fill this out if you're human:
-            <input
-              name="bot-field"
-              tabindex="-1"
-              autocomplete="off" />
+            <input name="bot-field" tabindex="-1" autocomplete="off" />
           </label>
         </p>
-        <input type="submit" value="Submit" />
+
+        <button class="submit" type="submit">Send message</button>
       </form>
-      <div class="link-arrow-container">
-        <div class="link-arrow"></div>
-      </div>
-      <div class="git-arrow-container">
-        <div class="git-arrow"></div>
-      </div>
-      <div class="about-arrow-container">
-        <div class="about-arrow"></div>
-      </div>
-    </section>
-    <a href="/index.html" class="floating-button" aria-label="Back to home">
-      <i class="fa fa-close" aria-hidden="true"></i>
-    </a>
+    </main>
   </body>
 </html>
